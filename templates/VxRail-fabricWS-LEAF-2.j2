@@ -1,0 +1,313 @@
+
+
+!
+ip vrf Vrf1
+ exit
+!
+
+!
+
+!
+ipv6 mld snooping
+!
+
+!
+
+!
+no multicast snooping flood-restrict
+!
+
+!
+
+!
+port-group 1/1/1
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/2
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/3
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/4
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/5
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/6
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/7
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/8
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/9
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/10
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/11
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/12
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/13
+ mode eth 100g-2x
+ exit
+!
+port-group 1/1/14
+ mode eth 100g-2x
+ exit
+!
+port-group 1/1/15
+ mode eth 100g-1x
+ exit
+!
+port-group 1/1/16
+ mode eth 100g-1x
+ exit
+!
+port-group 1/1/17
+ mode eth 100g-1x
+ exit
+!
+port-group 1/1/18
+ mode eth 100g-1x
+ exit
+!
+
+!
+
+!
+nve
+ source-interface loopback 1
+ exit
+!
+
+!
+
+!
+evpn
+!
+ evi 3939
+  vni 3939
+  rd auto
+  route-target 3939:1 both
+!
+ evi 101
+  vni 101
+  rd auto
+  route-target 101:1 both
+!
+ evi 102
+  vni 102
+  rd auto
+  route-target 102:1 both
+!
+ evi 103
+  vni 103
+  rd auto
+  route-target 103:1 both
+!
+ evi 104
+  vni 104
+  rd auto
+  route-target 104:1 both
+!
+ evi 105
+  vni 105
+  rd auto
+  route-target 105:1 both
+!
+router-mac 00:01:02:03:04:01
+vrf Vrf1
+  vni 3000
+  route-target 65535:30000 both
+  advertise ipv4 connected
+exit
+!
+!
+
+!
+
+!
+ip virtual-router mac-address 00:00:00:11:22:01
+!
+
+!
+
+!
+virtual-network 3939
+ description vlan:3939_extended_to_switches:VxRail-fabricWS-LEAF-3_VxRail-fabricWS-LEAF-4
+ vxlan-vni 3939
+!
+virtual-network 101
+ description vlan:101_extended_to_switches:
+ vxlan-vni 101
+!
+virtual-network 102
+ description vlan:102_extended_to_switches:
+ vxlan-vni 102
+!
+virtual-network 103
+ description vlan:103_extended_to_switches:
+ vxlan-vni 103
+!
+virtual-network 104
+ description vlan:104_extended_to_switches:
+ vxlan-vni 104
+!
+virtual-network 105
+ description vlan:105_extended_to_switches:
+ vxlan-vni 105
+!
+
+!
+
+!
+interface virtual-network 3939
+ no shutdown
+ description "vlan:3939_extended_to_switches:VxRail-fabricWS-LEAF-3_VxRail-fabricWS-LEAF-4"
+ ip vrf forwarding Vrf1
+ ip address 172.16.3.2/24
+ ip virtual-router address 172.16.3.254
+!
+interface virtual-network 101
+ no shutdown
+ description "vlan:101_extended_to_switches:"
+ ip vrf forwarding Vrf1
+ ip address 172.16.0.2/24
+ ip virtual-router address 172.16.0.254
+!
+interface virtual-network 102
+ no shutdown
+ description "vlan:102_extended_to_switches:"
+ ip vrf forwarding Vrf1
+ ip address 172.16.1.2/24
+ ip virtual-router address 172.16.1.254
+!
+interface virtual-network 103
+ no shutdown
+ description "vlan:103_extended_to_switches:"
+ ip vrf forwarding Vrf1
+ ip address 172.16.2.2/24
+ ip virtual-router address 172.16.2.254
+!
+interface virtual-network 104
+ no shutdown
+ description "vlan:104_extended_to_switches:"
+ ip vrf forwarding Vrf1
+ ip address 172.16.4.2/24
+ ip virtual-router address 172.16.4.254
+!
+interface virtual-network 105
+ no shutdown
+ description "vlan:105_extended_to_switches:"
+ ip vrf forwarding Vrf1
+ ip address 172.16.5.2/24
+ ip virtual-router address 172.16.5.254
+!
+
+!
+
+!
+interface vlan 101
+ virtual-network 101
+ mtu 9216
+
+!
+
+!
+interface vlan 102
+ virtual-network 102
+ mtu 9216
+
+!
+
+!
+interface vlan 103
+ virtual-network 103
+ mtu 9216
+
+!
+
+!
+interface vlan 104
+ virtual-network 104
+ mtu 9216
+
+!
+
+!
+interface vlan 105
+ virtual-network 105
+ mtu 9216
+
+!
+
+!
+interface vlan 3939
+ ipv6 mld snooping querier
+ virtual-network 3939
+ mtu 9216
+
+!
+
+!
+interface vlan 4000
+ mtu 9216
+
+!
+
+!
+vlt-domain 127
+ backup destination 192.168.1.143
+ discovery-interface ethernet1/1/47
+ discovery-interface ethernet1/1/48
+ peer-routing
+ vlt-mac 00:00:00:00:00:01
+!
+
+!
+
+!
+ip name-server 8.8.8.8 1.1.1.1
+!
+
+!
+
+!
+uplink-state-group 1
+ name "Virtual-switch-fail-over"
+ enable
+ downstream ethernet1/1/55
+ downstream ethernet1/1/56
+ upstream ethernet1/1/1
+ upstream ethernet1/1/2
+ upstream ethernet1/1/3
+ upstream ethernet1/1/4
+ upstream port-channel 10
+ upstream port-channel 11
+ upstream port-channel 12
+ upstream port-channel 13
+ upstream VLTi
+!
+
+!

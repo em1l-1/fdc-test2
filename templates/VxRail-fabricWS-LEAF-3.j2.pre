@@ -1,0 +1,83 @@
+
+!
+ip vrf Vrf1
+ exit
+!
+
+!
+
+!
+port-group 1/1/1
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/2
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/3
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/4
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/5
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/6
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/7
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/8
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/9
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/10
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/11
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/12
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/13
+ mode eth 100g-2x
+ exit
+!
+port-group 1/1/14
+ mode eth 100g-2x
+ exit
+!
+port-group 1/1/15
+ mode eth 100g-1x
+ exit
+!
+port-group 1/1/16
+ mode eth 100g-1x
+ exit
+!
+port-group 1/1/17
+ mode eth 100g-1x
+ exit
+!
+port-group 1/1/18
+ mode eth 100g-1x
+ exit
+!
+
+!

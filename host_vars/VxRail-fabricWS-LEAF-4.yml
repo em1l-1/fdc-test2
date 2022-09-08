@@ -1,0 +1,436 @@
+cli:
+  auth_pass: admin
+  authorize: true
+  host: '{{ ansible_host }}'
+  password: admin
+  username: admin
+hostname: VxRail-fabricWS-LEAF-4
+os10_bgp:
+  asn: 64626
+  best_path:
+    as_path: multipath-relax
+  graceful_restart: true
+  maxpath_ebgp: 2
+  neighbor:
+  - adv_interval: 1
+    fall_over: present
+    name: spine-leaf
+    timer: 3 9
+    type: peergroup
+  - address_family:
+    - allow_as_in: 1
+      type: ipv4
+    admin: up
+    adv_interval: 1
+    fall_over: present
+    ip: 192.164.1.6
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64600
+    timer: 3 9
+    type: ipv4
+  - address_family:
+    - allow_as_in: 1
+      type: ipv4
+    admin: up
+    adv_interval: 1
+    fall_over: present
+    ip: 192.164.2.6
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64600
+    timer: 3 9
+    type: ipv4
+  - admin: up
+    ip: 192.164.3.2
+    remote_asn: 64626
+    type: ipv4
+  - address_family:
+    - activate: false
+      type: ipv4
+    - activate: true
+      type: l2vpn
+    admin: up
+    adv_interval: 1
+    ebgp_multihop: 4
+    fall_over: present
+    ip: 10.0.1.1
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64600
+    send_community:
+    - state: present
+      type: extended
+    sender_loop_detect: false
+    src_loopback: 0
+    timer: 3 9
+    type: ipv4
+  - address_family:
+    - activate: false
+      type: ipv4
+    - activate: true
+      type: l2vpn
+    admin: up
+    adv_interval: 1
+    ebgp_multihop: 4
+    fall_over: present
+    ip: 10.0.1.2
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64600
+    send_community:
+    - state: present
+      type: extended
+    sender_loop_detect: false
+    src_loopback: 0
+    timer: 3 9
+    type: ipv4
+  redistribute:
+  - address_type: ipv4
+    route_map_name: spine-leaf
+    route_type: connected
+  router_id: 10.0.2.4
+os10_interface:
+  ethernet 1/1/1:
+    admin: up
+    desc: Node-05_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/10:
+    admin: up
+  ethernet 1/1/11:
+    admin: up
+  ethernet 1/1/12:
+    admin: up
+  ethernet 1/1/13:
+    admin: up
+  ethernet 1/1/14:
+    admin: up
+  ethernet 1/1/15:
+    admin: up
+  ethernet 1/1/16:
+    admin: up
+  ethernet 1/1/17:
+    admin: up
+  ethernet 1/1/18:
+    admin: up
+  ethernet 1/1/19:
+    admin: up
+  ethernet 1/1/2:
+    admin: up
+    desc: Node-06_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/20:
+    admin: up
+  ethernet 1/1/21:
+    admin: up
+  ethernet 1/1/22:
+    admin: up
+  ethernet 1/1/23:
+    admin: up
+  ethernet 1/1/24:
+    admin: up
+  ethernet 1/1/25:
+    admin: up
+  ethernet 1/1/26:
+    admin: up
+  ethernet 1/1/27:
+    admin: up
+  ethernet 1/1/28:
+    admin: up
+  ethernet 1/1/29:
+    admin: up
+  ethernet 1/1/3:
+    admin: up
+    desc: Node-07_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/30:
+    admin: up
+  ethernet 1/1/31:
+    admin: up
+  ethernet 1/1/32:
+    admin: up
+  ethernet 1/1/33:
+    admin: up
+  ethernet 1/1/34:
+    admin: up
+  ethernet 1/1/35:
+    admin: up
+  ethernet 1/1/36:
+    admin: up
+  ethernet 1/1/37:
+    admin: up
+  ethernet 1/1/38:
+    admin: up
+  ethernet 1/1/39:
+    admin: up
+  ethernet 1/1/4:
+    admin: up
+    desc: Node-08_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/40:
+    admin: up
+  ethernet 1/1/41:
+    admin: up
+  ethernet 1/1/42:
+    admin: up
+  ethernet 1/1/43:
+    admin: up
+  ethernet 1/1/44:
+    admin: up
+  ethernet 1/1/45:
+    admin: up
+  ethernet 1/1/46:
+    admin: up
+  ethernet 1/1/47:
+    admin: up
+    desc: VLT to VxRail-fabricWS-LEAF-3 1/1/47
+    switchport: false
+  ethernet 1/1/48:
+    admin: up
+    desc: VLT to VxRail-fabricWS-LEAF-3 1/1/48
+    switchport: false
+  ethernet 1/1/49:
+    admin: up
+  ethernet 1/1/5:
+    admin: up
+    desc: Node-05_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/51:
+    admin: up
+  ethernet 1/1/53:
+    admin: up
+  ethernet 1/1/54:
+    admin: up
+  ethernet 1/1/55:
+    admin: up
+    desc: Uplink to VxRail-fabricWS-SPINE-2 1/1/4
+    ip_and_mask: 192.164.2.7/31
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/56:
+    admin: up
+    desc: Uplink to VxRail-fabricWS-SPINE-1 1/1/4
+    ip_and_mask: 192.164.1.7/31
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/6:
+    admin: up
+    desc: Node-06_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/7:
+    admin: up
+    desc: Node-07_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/8:
+    admin: up
+    desc: Node-08_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/9:
+    admin: up
+  loopback 0:
+    admin: up
+    ip_and_mask: 10.0.2.4/32
+  loopback 1:
+    admin: up
+    ip_and_mask: 1.0.1.2/32
+os10_lag:
+  Po 14:
+    admin: up
+    state: present
+    type: dynamic
+  Po 15:
+    admin: up
+    state: present
+    type: dynamic
+  Po 16:
+    admin: up
+    state: present
+    type: dynamic
+  Po 17:
+    admin: up
+    state: present
+    type: dynamic
+os10_lldp:
+  enable: true
+os10_prefix_list:
+- entries:
+  - condition_list:
+    - condition: ge
+      prelen: '24'
+    mask: '16'
+    net_num: 10.0.0.0
+    number: 10
+    permit: true
+    state: present
+  - condition_list:
+    - condition: ge
+      prelen: '24'
+    mask: '16'
+    net_num: 1.0.0.0
+    number: 20
+    permit: true
+    state: present
+  - condition_list:
+    - condition: ge
+      prelen: '24'
+    mask: '16'
+    net_num: 192.164.0.0
+    number: 30
+    permit: true
+    state: present
+  name: spine-leaf
+  state: present
+  type: ipv4
+os10_route_map:
+  route_map:
+  - match:
+    - ip_type: ipv4
+      prefix_list: spine-leaf
+    name: spine-leaf
+    permit: true
+    seq_num: 10
+os10_snmp:
+  snmp_community:
+  - access_mode: ro
+    name: DELL
+  snmp_contact: perry.van.den.brink@dell.com
+os10_system:
+  hostname: VxRail-fabricWS-LEAF-4
+os10_vlan:
+  Vlan 201:
+    description: VxRail_2_Management
+    ip_and_mask: null
+    state: present
+    untagged_members:
+    - port: ethernet 1/1/1
+      state: present
+    - port: ethernet 1/1/2
+      state: present
+    - port: ethernet 1/1/3
+      state: present
+    - port: ethernet 1/1/4
+      state: present
+  Vlan 202:
+    description: VxRail_2_vSAN
+    ip_and_mask: null
+    state: present
+    tagged_members:
+    - port: Po 14
+      state: present
+    - port: Po 15
+      state: present
+    - port: Po 16
+      state: present
+    - port: Po 17
+      state: present
+  Vlan 203:
+    description: VxRail_2_vMotion
+    ip_and_mask: null
+    state: present
+    tagged_members:
+    - port: Po 14
+      state: present
+    - port: Po 15
+      state: present
+    - port: Po 16
+      state: present
+    - port: Po 17
+      state: present
+  Vlan 204:
+    description: VxRail_2_vmNetwork_1
+    ip_and_mask: null
+    state: present
+    tagged_members:
+    - port: Po 14
+      state: present
+    - port: Po 15
+      state: present
+    - port: Po 16
+      state: present
+    - port: Po 17
+      state: present
+  Vlan 205:
+    description: VxRail_2_vmNetwork_2
+    ip_and_mask: null
+    state: present
+    tagged_members:
+    - port: Po 14
+      state: present
+    - port: Po 15
+      state: present
+    - port: Po 16
+      state: present
+    - port: Po 17
+      state: present
+  Vlan 3939:
+    description: VxRail_1_pvtMgmt
+    ip_and_mask: null
+    state: present
+    tagged_members:
+    - port: ethernet 1/1/1
+      state: present
+    - port: ethernet 1/1/2
+      state: present
+    - port: ethernet 1/1/3
+      state: present
+    - port: ethernet 1/1/4
+      state: present
+  Vlan 4000:
+    description: iBGP_link
+    ip_and_mask: 192.164.3.3/31
+    state: present
+os10_vlt:
+  discovery_intf: 1/1/47-1/1/48
+  discovery_intf_state: present
+  domain: 127
+  peer_routing: true
+  vlt_mac: 00:00:00:00:00:02
+  vlt_peers:
+    Po 14:
+      peer_lag: 14
+    Po 15:
+      peer_lag: 15
+    Po 16:
+      peer_lag: 16
+    Po 17:
+      peer_lag: 17
+os10_xstp:
+  enable: true
+  intf:
+    Po 14:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 15:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 16:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 17:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    ethernet 1/1/1:
+      edge_port: true
+    ethernet 1/1/2:
+      edge_port: true
+    ethernet 1/1/3:
+      edge_port: true
+    ethernet 1/1/4:
+      edge_port: true
+  type: rstp

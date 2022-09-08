@@ -1,0 +1,294 @@
+cli:
+  auth_pass: admin
+  authorize: true
+  host: '{{ ansible_host }}'
+  password: admin
+  username: admin
+hostname: VxRail-fabricWS-SPINE-1
+os10_bgp:
+  asn: 64600
+  best_path:
+    as_path: multipath-relax
+  graceful_restart: true
+  maxpath_ebgp: 2
+  neighbor:
+  - adv_interval: 1
+    fall_over: present
+    name: spine-leaf
+    timer: 3 9
+    type: peergroup
+  - address_family:
+    - type: ipv4
+    admin: up
+    adv_interval: 1
+    fall_over: present
+    ip: 192.164.1.1
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64625
+    sender_loop_detect: false
+    timer: 3 9
+    type: ipv4
+  - address_family:
+    - type: ipv4
+    admin: up
+    adv_interval: 1
+    fall_over: present
+    ip: 192.164.1.3
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64625
+    sender_loop_detect: false
+    timer: 3 9
+    type: ipv4
+  - address_family:
+    - type: ipv4
+    admin: up
+    adv_interval: 1
+    fall_over: present
+    ip: 192.164.1.5
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64626
+    sender_loop_detect: false
+    timer: 3 9
+    type: ipv4
+  - address_family:
+    - type: ipv4
+    admin: up
+    adv_interval: 1
+    fall_over: present
+    ip: 192.164.1.7
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64626
+    sender_loop_detect: false
+    timer: 3 9
+    type: ipv4
+  - address_family:
+    - activate: false
+      type: ipv4
+    - activate: true
+      type: l2vpn
+    admin: up
+    adv_interval: 1
+    ebgp_multihop: 4
+    fall_over: present
+    ip: 10.0.2.1
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64625
+    send_community:
+    - state: present
+      type: extended
+    sender_loop_detect: false
+    src_loopback: 0
+    timer: 3 9
+    type: ipv4
+  - address_family:
+    - activate: false
+      type: ipv4
+    - activate: true
+      type: l2vpn
+    admin: up
+    adv_interval: 1
+    ebgp_multihop: 4
+    fall_over: present
+    ip: 10.0.2.2
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64625
+    send_community:
+    - state: present
+      type: extended
+    sender_loop_detect: false
+    src_loopback: 0
+    timer: 3 9
+    type: ipv4
+  - address_family:
+    - activate: false
+      type: ipv4
+    - activate: true
+      type: l2vpn
+    admin: up
+    adv_interval: 1
+    ebgp_multihop: 4
+    fall_over: present
+    ip: 10.0.2.3
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64626
+    send_community:
+    - state: present
+      type: extended
+    sender_loop_detect: false
+    src_loopback: 0
+    timer: 3 9
+    type: ipv4
+  - address_family:
+    - activate: false
+      type: ipv4
+    - activate: true
+      type: l2vpn
+    admin: up
+    adv_interval: 1
+    ebgp_multihop: 4
+    fall_over: present
+    ip: 10.0.2.4
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64626
+    send_community:
+    - state: present
+      type: extended
+    sender_loop_detect: false
+    src_loopback: 0
+    timer: 3 9
+    type: ipv4
+  redistribute:
+  - address_type: ipv4
+    route_map_name: spine-leaf
+    route_type: connected
+  router_id: 10.0.1.1
+os10_interface:
+  ethernet 1/1/1:
+    admin: up
+    desc: Interlink to VxRail-fabricWS-LEAF-1 eth56
+    ip_and_mask: 192.164.1.0/31
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/10:
+    admin: up
+  ethernet 1/1/11:
+    admin: up
+  ethernet 1/1/12:
+    admin: up
+  ethernet 1/1/13:
+    admin: up
+  ethernet 1/1/14:
+    admin: up
+  ethernet 1/1/15:
+    admin: up
+  ethernet 1/1/16:
+    admin: up
+  ethernet 1/1/17:
+    admin: up
+  ethernet 1/1/18:
+    admin: up
+  ethernet 1/1/19:
+    admin: up
+  ethernet 1/1/2:
+    admin: up
+    desc: Interlink to VxRail-fabricWS-LEAF-2 eth56
+    ip_and_mask: 192.164.1.2/31
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/20:
+    admin: up
+  ethernet 1/1/21:
+    admin: up
+  ethernet 1/1/22:
+    admin: up
+  ethernet 1/1/23:
+    admin: up
+  ethernet 1/1/24:
+    admin: up
+  ethernet 1/1/25:
+    admin: up
+  ethernet 1/1/26:
+    admin: up
+  ethernet 1/1/27:
+    admin: up
+  ethernet 1/1/28:
+    fanout: 10g-4x
+  ethernet 1/1/28:1:
+    admin: up
+    desc: Uplink
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/28:2:
+    admin: up
+  ethernet 1/1/28:3:
+    admin: up
+  ethernet 1/1/28:4:
+    admin: up
+    desc: Uplink
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/29:
+    admin: up
+  ethernet 1/1/3:
+    admin: up
+    desc: Interlink to VxRail-fabricWS-LEAF-3 eth56
+    ip_and_mask: 192.164.1.4/31
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/30:
+    admin: up
+  ethernet 1/1/31:
+    admin: up
+  ethernet 1/1/32:
+    admin: up
+  ethernet 1/1/33:
+    admin: up
+  ethernet 1/1/34:
+    admin: up
+  ethernet 1/1/4:
+    admin: up
+    desc: Interlink to VxRail-fabricWS-LEAF-4 eth56
+    ip_and_mask: 192.164.1.6/31
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/5:
+    admin: up
+  ethernet 1/1/6:
+    admin: up
+  ethernet 1/1/7:
+    admin: up
+  ethernet 1/1/8:
+    admin: up
+  ethernet 1/1/9:
+    admin: up
+  loopback 0:
+    admin: up
+    ip_and_mask: 10.0.1.1/32
+os10_lldp:
+  enable: true
+os10_prefix_list:
+- entries:
+  - condition_list:
+    - condition: ge
+      prelen: '24'
+    mask: '16'
+    net_num: 10.0.0.0
+    number: 10
+    permit: true
+    state: present
+  - condition_list:
+    - condition: ge
+      prelen: '24'
+    mask: '16'
+    net_num: 192.164.0.0
+    number: 20
+    permit: true
+    state: present
+  name: spine-leaf
+  state: present
+  type: ipv4
+os10_route_map:
+  route_map:
+  - match:
+    - ip_type: ipv4
+      prefix_list: spine-leaf
+    name: spine-leaf
+    permit: true
+    seq_num: 10
+os10_snmp:
+  snmp_community:
+  - access_mode: ro
+    name: DELL
+  snmp_contact: perry.van.den.brink@dell.com
+os10_system:
+  hostname: VxRail-fabricWS-SPINE-1
+os10_xstp:
+  intf: {}
